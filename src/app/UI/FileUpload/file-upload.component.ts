@@ -55,7 +55,7 @@ export class FileUploadComponent implements OnInit {
   // On file Select
   onChange(event: any) {
     this.predicted = false;
-    this.buttonDisable = true;
+    this.buttonDisable = false;
     this.file = event.target.files[0];
 
     if (this.file) this.buttonDisable = false;
@@ -74,6 +74,7 @@ export class FileUploadComponent implements OnInit {
 
   // OnClick of button Upload
   onUpload() {
+    this.buttonDisable = true;
     this.predicted = false;
     this.loading = !this.loading;
     const img = new Image();
