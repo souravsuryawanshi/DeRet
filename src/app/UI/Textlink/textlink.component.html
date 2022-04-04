@@ -1,0 +1,4 @@
+<div class="txtlnk" *ngIf="!login_status && show">
+  <div><ng-content select="[text]"></ng-content> </div>
+  <div class="lnk" (click)="onClickHandler()"><ng-content ></ng-content></div>
+</div>

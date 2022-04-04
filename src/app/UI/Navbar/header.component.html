@@ -1,0 +1,16 @@
+<div class="stick" *ngIf="span" >Diabetic Retinopathy Detection Using Machine Learning</div>
+<header class="navbar-container">
+ <div class="logo" (click)="check()">
+ <img src="../../../assets/eye_icon-icons.com_71204.png">
+  <label>DeRet</label>
+   </div>
+  <app-links  (out)="navigateDashboard()">  <strong>Home </strong></app-links>
+  <app-links *ngIf="login_status"  (out)="navigatePrediction($event)">  <strong>Predict Retinopathy Stage</strong></app-links>
+  <app-links (out)="navigateAbout($event)"> <strong>About</strong> </app-links>
+  <app-links (out)="navigateRetinopathy($event)"> <strong>Retinopathy</strong> </app-links>
+  <app-links  (out)="navigateContact($event)">  <strong>Contact Us </strong></app-links>
+  <app-links *ngIf="!login_status" (out)="navigateRegister($event)"> <strong>Register</strong></app-links>
+  <app-links *ngIf="!login_status" (out)="navigateLogin($event)"> <strong>Login </strong></app-links>
+  <app-links *ngIf="login_status"  (out)="navigateHome($event)">  <strong>Logout </strong></app-links>
+
+</header>

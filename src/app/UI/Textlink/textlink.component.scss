@@ -1,0 +1,28 @@
+
+
+.txtlnk{
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   color: black;
+   margin-bottom: 10px;
+   font-size: 14px;
+
+
+}
+
+
+
+.lnk{
+text-decoration: none;
+color: darken(red, 5%);
+}
+
+.lnk:hover{
+  color: lighten(red,10%);
+}
+@media screen and (max-width:602px){
+  .lnk{
+    // margin-left: 0;
+  }
+}

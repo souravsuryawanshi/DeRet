@@ -1,0 +1,50 @@
+<div class="cover">
+<div class="left">
+  <img src="../../../assets/undraw_login_re_4vu2.svg">
+</div>
+
+
+
+<div class="right">
+<div class="h"><h1>Login</h1></div>
+<form (submit)="onSubmit()" class="form-wrap">
+
+  <div class="space">
+    <div>Email</div>
+ </div>
+
+  <app-input [fieldValues]="usernameValues"
+    [empty]="usernameValues.empty" >
+  </app-input>
+
+  <div class="space">
+     <div>Password</div>
+
+  </div>
+
+  <app-input [fieldValues]="passwordValues"
+   [empty]="passwordValues.empty" >
+  </app-input>
+
+ <span *ngIf="receivedError.length >0" style="color:red">{{receivedError}}</span>
+  <app-login *ngIf="!loading" [isdisabled]="usernameValues.disable && passwordValues.disable">
+    Login
+  </app-login>
+ <app-login *ngIf="loading" [isdisabled]="true">
+    Login
+  </app-login>
+
+
+
+</form>
+<div class="link" (click)="onForgot()">Forgot Password?</div>
+<label></label>
+<app-textlink >
+ <p text>Do not have an account?...</p>
+  <p>Register Here</p>
+
+</app-textlink>
+
+</div>
+
+</div>

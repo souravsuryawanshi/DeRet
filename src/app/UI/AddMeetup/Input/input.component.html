@@ -1,0 +1,12 @@
+<span class="fnt"
+ *ngIf="!fieldValues.validated || empty ">
+    {{fieldValues.errorMessage}}
+ </span>
+
+<input class="form-input"
+ [ngClass] = "{'red': !fieldValues.validated || empty }"
+ [type]="fieldValues.type"
+ [(ngModel)] = "fieldValues.value"
+  name="fieldValues.name"
+  (input)="fieldValues.isValid()" placeholder="{{fieldValues.placeholder}}"/>
+

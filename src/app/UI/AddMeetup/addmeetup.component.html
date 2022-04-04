@@ -1,0 +1,43 @@
+<div class="cover">
+<div class="left">
+  <img  src="../../../assets/undraw_sign_in_re_o58h.svg" >
+</div>
+
+<div class="right">
+<div class="h"><h1>Register</h1></div>
+<form (submit)="onSubmit()" class="form-wrap">
+
+  <app-input [fieldValues]="usernameValues"
+    [empty]="usernameValues.empty" >
+  </app-input>
+
+  <app-input [fieldValues]="phone"
+  [empty]="phone.empty" >
+</app-input>
+
+<app-input [fieldValues]="passwordValues"
+[empty]="passwordValues.empty" >
+</app-input>
+
+
+  <app-input [fieldValues]="confirm"
+   [empty]="confirm.empty" >
+  </app-input>
+
+  <app-login *ngIf="!loading"  [isdisabled]="phone.disable && usernameValues.disable && passwordValues.disable && confirm.disable">
+    Register
+  </app-login>
+  <app-login *ngIf="loading" [isdisabled]="true">
+    Register
+  </app-login>
+
+</form>
+<app-textlink >
+  <p text>Already registered?...</p>
+   <p>Login</p>
+
+ </app-textlink>
+</div>
+</div>
+
+

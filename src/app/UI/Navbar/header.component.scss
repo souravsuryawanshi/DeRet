@@ -1,0 +1,45 @@
+.stick{
+
+  width: 100%;
+  height: 20px;
+  font-size: 12px;
+  font-family: Arial,'Montserrat', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:  darken(skyblue,20%);
+  font-weight: bold;
+  background-color: white;
+}
+
+
+  .navbar-container{
+
+
+    width: 100%;
+    display: flex;
+    height: 50px;
+    justify-content: space-evenly;
+    background-color:skyblue;
+
+  }
+
+
+
+  .logo{
+    font-size: 1.5rem;
+    margin: .5rem;
+    font-family: cursive;
+    font-weight: bolder;
+    color: black;
+    display: flex;
+
+  }
+
+  .logo:hover{
+    color: white;
+  }
+
+img{
+ margin-right: 5px;
+}

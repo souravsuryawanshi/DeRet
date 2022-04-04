@@ -1,0 +1,61 @@
+<div class="container">
+  <h2>Predict Retinopathy</h2>
+  <div class="main">
+  <label class="label">select a fundus image...</label>
+  <input  class="input" type="file"  (change)="onChange($event)">
+</div>
+  <button class="upload" (click)="onUpload()" [disabled]="buttonDisable">
+      Predict
+  </button>
+
+<div  *ngIf="loading" class="loading" style="margin-bottom: 20px;">
+  <h5>Diagnosing.....</h5>
+</div>
+
+<!-- <div *ngIf="predicted" class="predicted">
+
+    <div class="image">
+       <img [src]="url">
+    </div>
+     <div class="results">
+       <label style="align-self:center; color: red; font-size: 18px;">Results:</label>
+
+       <label style="margin-top:0px;margin-bottom:5px;">Stage of Retinopathy:</label>
+       <div style="margin-top:0 ;margin-bottom:10px;">{{predictedClass}}</div>
+
+       <label style="margin-top: 0px;margin-bottom: 5px;">Severity: </label>
+       <div style="margin-top:0 ;margin-bottom: 10px;">{{severity}}</div>
+
+       <label style="margin-top:0px ;margin-bottom:5px ;">Findings:</label>
+       <div style="margin-top:0px ;margin-bottom:10px ;">{{predictedClassMessage}}</div>
+
+      <label style="margin-top:0px ;margin-bottom:5px ;">Consultation Required:</label>
+      <label style="margin-top:0px ;margin-bottom:10px ;">Yes</label>
+
+       <label style="margin-top:0px ;margin-bottom:5px ;">Consult a Doctor:</label>
+       <div style="margin-top:0px ;margin-bottom:10px ;">{{seekAdvice}}</div>
+     </div>
+
+</div> -->
+
+<label *ngIf="predicted" style="align-self:center; color: red; font-size: 18px;margin-bottom: 20px;">Results:</label>
+<div *ngIf="predicted" class="single" style="align-self: center;">
+  <div class="left">
+   <div class="des1"><strong>Detected Class:</strong><br>{{predictedClass}}</div>
+   <div class="des1"><strong>Severity: </strong><br>{{severity}}</div>
+   <div class="des1"><strong>Findings :</strong><br>{{predictedClassMessage}}</div>
+   <div class="des1"><strong>Consultation Required :</strong><br>Yes</div>
+   <div class="des1"><strong>Consult a Doctor: </strong><br><a href="https://www.practo.com/?utm_source=google&utm_medium=cpc&utm_campaign=brand-search-practo-consult&sem=true&gclid=EAIaIQobChMIyrry2Jby9gIVlQsrCh1jJAovEAAYASAAEgJ2P_D_BwE">Visit this website...</a></div>
+
+  </div>
+  <div class="left1"></div>
+  <div class="right">
+   <img [src] = "url" class="img">
+
+  </div>
+</div>
+
+
+
+
+</div>
