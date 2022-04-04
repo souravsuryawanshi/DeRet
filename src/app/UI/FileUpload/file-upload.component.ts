@@ -38,17 +38,17 @@ export class FileUploadComponent implements OnInit {
   // Inject service
   constructor(private fileUploadService: FileUploadService) {}
 
-  async ngOnInit() {
-    this.model = await tf.loadLayersModel('../../../assets/Model2/model.json');
+  ngOnInit() {
+    this.model = tf.loadLayersModel('../../../assets/Model2/model.json');
     //model loaded
     console.log(this.model);
-    this.fer_json = await $.getJSON(
-      '../../../assets/Model/fer.json',
-      function (json) {
-        return json.responseJSON;
-      }
-    );
-    console.log(this.fer_json);
+    // this.fer_json = await $.getJSON(
+    //   '../../../assets/Model/fer.json',
+    //   function (json) {
+    //     return json.responseJSON;
+    //   }
+    // );
+    // console.log(this.fer_json);
   }
 
   // reader: any;
