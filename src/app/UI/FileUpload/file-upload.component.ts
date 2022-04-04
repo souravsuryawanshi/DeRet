@@ -74,13 +74,14 @@ export class FileUploadComponent implements OnInit {
 
   // OnClick of button Upload
   onUpload() {
+    // latest update async await
     this.buttonDisable = true;
     this.predicted = false;
     this.loading = !this.loading;
     const img = new Image();
     img.src = this.url;
     let axis;
-    img.onload = () => {
+    img.onload = async () => {
       const t = tf.browser.fromPixels(img);
       console.log(t.shape);
       let res = tf.expandDims(t, (axis = 0));
@@ -98,7 +99,7 @@ export class FileUploadComponent implements OnInit {
       // const normalized = resized.div(offset); //[ 0.9991870522499084, 0.00011081025149906054, 0.00041361741023138165, 0.00005470188625622541, 0.0002339934289921075 ]
 
       const batched = normalized.expandDims(0);
-      var pred = this.model.predict(batched).dataSync();
+      var pred = await this.model.predict(batched).dataSync();
       console.log(pred);
 
       //class detection from here
