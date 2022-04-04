@@ -82,23 +82,25 @@ export class FileUploadComponent implements OnInit {
     img.src = this.url;
     let axis;
     img.onload = async () => {
-      const t = tf.browser.fromPixels(img);
+      const t = await tf.browser.fromPixels(img);
       console.log(t.shape);
-      let res = tf.expandDims(t, (axis = 0));
+      let res = await tf.expandDims(t, (axis = 0));
 
       //check
-      let tensor = tf.browser.fromPixels(img);
+      let tensor = await tf.browser.fromPixels(img);
 
-      const resized = tf.image.resizeBilinear(tensor, [320, 320]).toFloat();
+      const resized = await tf.image
+        .resizeBilinear(tensor, [320, 320])
+        .toFloat();
 
-      const offset = tf.scalar(255.0);
+      const offset = await tf.scalar(255.0);
 
       // working for normal but might not working good for eye
-      const normalized = tf.scalar(1.0).sub(resized.div(offset)); // [ 0.0028980933129787445, 0.0005009372835047543, 0.9820129871368408, 0.005302976816892624, 0.009285111911594868 ]
+      const normalized = await tf.scalar(1.0).sub(resized.div(offset)); // [ 0.0028980933129787445, 0.0005009372835047543, 0.9820129871368408, 0.005302976816892624, 0.009285111911594868 ]
       //not working for normal but working good for eye
       // const normalized = resized.div(offset); //[ 0.9991870522499084, 0.00011081025149906054, 0.00041361741023138165, 0.00005470188625622541, 0.0002339934289921075 ]
 
-      const batched = normalized.expandDims(0);
+      const batched = await normalized.expandDims(0);
       var pred = await this.model.predict(batched).dataSync();
       console.log(pred);
 
