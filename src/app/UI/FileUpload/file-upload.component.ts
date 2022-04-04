@@ -111,6 +111,8 @@ export class FileUploadComponent implements OnInit {
         }
       }
 
+      this.loading = !this.loading;
+      this.predicted = true;
       switch (max) {
         case 0:
           console.log('class 1');
@@ -145,9 +147,6 @@ export class FileUploadComponent implements OnInit {
           this.severity = '';
           break;
       }
-
-      this.loading = !this.loading;
-      this.predicted = true;
 
       //class detection till here
 
