@@ -39,6 +39,7 @@ export class FileUploadComponent implements OnInit {
   constructor(private fileUploadService: FileUploadService) {}
 
   async ngOnInit() {
+    tf.ENV.set('WEBGL_PACK', false);
     this.model = await tf.loadLayersModel('../../../assets/Model2/model.json');
     //model loaded
     console.log('loading model');
@@ -98,12 +99,71 @@ export class FileUploadComponent implements OnInit {
       const offset = tf.scalar(255.0);
 
       // working for normal but might not working good for eye
-      const normalized = tf.scalar(1.0).sub(resized.div(offset)); // [ 0.0028980933129787445, 0.0005009372835047543, 0.9820129871368408, 0.005302976816892624, 0.009285111911594868 ]
+
+      //working better use this in final presentation, use 1 or 3rd
+      //const normalized = tf.scalar(1.0).sub(resized.div(offset)); // [ 0.0028980933129787445, 0.0005009372835047543, 0.9820129871368408, 0.005302976816892624, 0.009285111911594868 ]
+
       //not working for normal but working good for eye
       // const normalized = resized.div(offset); //[ 0.9991870522499084, 0.00011081025149906054, 0.00041361741023138165, 0.00005470188625622541, 0.0002339934289921075 ]
 
+      //3rd way
+      const normalized = resized.sub(offset).div(offset);
+
+      //4th way
+
+      //const normalized = resized.sub(offset).div(offset);
+
+      //from here
+      //    function  crop_image_from_gray(img :any,tol=7){
+      //      if (img.ndim ==2){
+      //          let mask = img>tol;
+      //          return img[tf.numpy_function()]  //.ix_(mask.any(1),mask.any(0))];
+      //      }
+      //      else if(img.ndim==3){
+      //          gray_img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY);
+      //          mask = gray_img>tol;
+
+      //          check_shape = img[:,:,0][np.ix_(mask.any(1),mask.any(0))].shape[0];
+      //          if (check_shape == 0){
+      //              return img;
+      //          }
+      //          else{
+      //              img1=img[:,:,0][np.ix_(mask.any(1),mask.any(0))];
+      //              img2=img[:,:,1][np.ix_(mask.any(1),mask.any(0))];
+      //              img3=img[:,:,2][np.ix_(mask.any(1),mask.any(0))];
+      //            //  print(img1.shape,img2.shape,img3.shape)
+      //              img = np.stack([img1,img2,img3],axis=-1);
+      //             // print(img.shape)
+      //          return img;
+      //          }
+      //      }
+      //     }
+
+      //  function circle_crop(img, sigmaX = 30){
+
+      //      img = crop_image_from_gray(img)
+      //      img = tf.c.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+      //     { height, width, depth} = img.shape;
+
+      //      x = (width/2);
+      //      y = (height/2);
+      //      r = np.amin((x,y));
+
+      //      circle_img = np.zeros((height, width), np.uint8);
+      //      cv2.circle(circle_img, (x,y), int(r), 1, thickness=-1);
+      //      img = cv2.bitwise_and(img, img, mask=circle_img);
+      //      img = crop_image_from_gray(img);
+      //      img=cv2.addWeighted(img,4, cv2.GaussianBlur( img , (0,0) , sigmaX) ,-4 ,128);
+      //      return img;
+
+      //  }
+
+      //till here
+
       const batched = normalized.expandDims(0);
       var pred = this.model.predict(batched).dataSync();
+
       console.log(pred);
 
       //class detection from here
