@@ -44,7 +44,7 @@ export class FileUploadComponent implements OnInit {
     //model loaded
     console.log('loading model');
     console.log(this.model);
-    console.log('sourav');
+
     // this.fer_json = await $.getJSON(
     //   '../../../assets/Model/fer.json',
     //   function (json) {
@@ -101,13 +101,13 @@ export class FileUploadComponent implements OnInit {
       // working for normal but might not working good for eye
 
       //working better use this in final presentation, use 1 or 3rd
-      //const normalized = tf.scalar(1.0).sub(resized.div(offset)); // [ 0.0028980933129787445, 0.0005009372835047543, 0.9820129871368408, 0.005302976816892624, 0.009285111911594868 ]
+      const normalized = tf.scalar(1.0).sub(resized.div(offset)); // [ 0.0028980933129787445, 0.0005009372835047543, 0.9820129871368408, 0.005302976816892624, 0.009285111911594868 ]
 
       //not working for normal but working good for eye
       // const normalized = resized.div(offset); //[ 0.9991870522499084, 0.00011081025149906054, 0.00041361741023138165, 0.00005470188625622541, 0.0002339934289921075 ]
 
       //3rd way
-      const normalized = resized.sub(offset).div(offset);
+      //const normalized = resized.sub(offset).div(offset);
 
       //4th way
 
@@ -180,36 +180,38 @@ export class FileUploadComponent implements OnInit {
       this.predicted = true;
       switch (max) {
         case 0:
-          console.log('class 1');
-          this.predictedClass = 'Class 1';
-          this.predictedClassMessage = 'No apparent Retinopathy is detected.';
-          this.severity = 'None';
+          console.log('class 0');
+          this.predictedClass = 'Class 0';
+          this.predictedClassMessage = '';
+          this.severity = 'No Retinopathy';
           this.consultation = 'No';
 
           break;
         case 1:
+          console.log('class 1');
+          this.predictedClass = 'Class 1';
+          this.predictedClassMessage = '';
+          this.severity = 'Mild Retinopathy';
+
+          break;
+        case 2:
           console.log('class 2');
           this.predictedClass = 'Class 2';
           this.predictedClassMessage = '';
-          this.severity = '';
+          this.severity = 'Moderate Retinopathy';
+
           break;
-        case 2:
+        case 3:
           console.log('class 3');
           this.predictedClass = 'Class 3';
           this.predictedClassMessage = '';
-          this.severity = '';
+          this.severity = 'Severe Retinopathy';
           break;
-        case 3:
+        case 4:
           console.log('class 4');
           this.predictedClass = 'Class 4';
           this.predictedClassMessage = '';
-          this.severity = '';
-          break;
-        case 4:
-          console.log('class 5');
-          this.predictedClass = 'Class 5';
-          this.predictedClassMessage = '';
-          this.severity = '';
+          this.severity = 'Proliferative Retinopathy';
           break;
       }
 

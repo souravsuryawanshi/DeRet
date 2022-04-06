@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'deret';
+  title: string = 'deret';
   constructor(private _route: Router, private _log: LoginStatus) {}
   ngOnInit() {
     if (localStorage.getItem('user_login_status') === 'true')
